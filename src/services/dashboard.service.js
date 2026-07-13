@@ -172,7 +172,10 @@ async function getFullDashboard(params, requestingUser) {
       params.groupBy || 'monthly'
     ),
     getRecentActivity(params.recentLimit || 10),
-    getInsights(params.startDate, params.endDate)
+    getInsights(
+      params.startDate || new Date(0),
+      params.endDate || new Date()
+    )
   ]);
 
   return { summary, categoryTotals, categoryTrends, recentActivity, insights };

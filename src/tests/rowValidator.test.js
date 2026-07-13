@@ -25,6 +25,7 @@ function test(name, fn) {
 }
 
 const validRow = {
+  transactionRef: 'TXN-001',
   amount: '1500',
   type: 'INCOME',
   category: 'Salary',
@@ -54,7 +55,7 @@ test('valid row coerces transactionDate string to Date', () => {
 });
 
 test('description is optional — row without it is valid', () => {
-  const row = { amount: '500', type: 'EXPENSE', category: 'Transport', transactionDate: '2024-02-01' };
+  const row = { transactionRef: 'TXN-002', amount: '500', type: 'EXPENSE', category: 'Transport', transactionDate: '2024-02-01' };
   const { valid, errors } = validateRows([row]);
   assert.strictEqual(errors.length, 0);
   assert.strictEqual(valid.length, 1);
